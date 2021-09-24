@@ -9,6 +9,9 @@ namespace SistemaBuscador.Entities
     {
         public int id { get; set; }
         public string NombreUsuario { get; set; }
+        public string Nombres { get; set; }
+        public string Apellidos { get; set; }
+        public int RolId { get; set; }
         public string Password { get; set; }
     }
 }

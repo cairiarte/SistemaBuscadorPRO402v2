@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SistemaBuscador.Filters;
 using SistemaBuscador.Repositories;
+using SistemaBuscador.Testing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,8 +32,9 @@ namespace SistemaBuscador
             services.AddSession();
             services.AddTransient<SessionFilter>();
             services.AddScoped<ILoginRepository, LoginRepositoryEF>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddDbContext<ApplicationDbContext>(options=>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
