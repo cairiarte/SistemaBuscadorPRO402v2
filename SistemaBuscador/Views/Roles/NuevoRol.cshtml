@@ -1,0 +1,26 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model RolCreacionModel
+<h3>Nuevo Usuario</h3>
+<hr />
+<div class="alert alert-success mt-3" role="alert">
+    * La contraseña debe tener al menos una Mayuscula, minusculas, digitos y al menos 8 caracteres
+</div>
+<div class="card">
+    <div class="card-body">
+        <form action="NuevoRol" method="post">
+            <div class="form-group">
+                <label asp-for="Nombre"></label>
+                <input asp-for="Nombre" class="form-control" type="text" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+            <button class="btn btn-primary" type="submit">Guardar</button>
+
+        </form>
+    </div>
+</div>

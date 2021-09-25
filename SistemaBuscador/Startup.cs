@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using SistemaBuscador.Filters;
 using SistemaBuscador.Repositories;
 using SistemaBuscador.Testing;
+using SistemaBuscador.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,8 @@ namespace SistemaBuscador
             services.AddTransient<SessionFilter>();
             services.AddScoped<ILoginRepository, LoginRepositoryEF>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<IRolRepository, RolRepository>();
+            services.AddScoped<ISeguridad, Seguridad>();
             services.AddDbContext<ApplicationDbContext>(options=>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); 
         }

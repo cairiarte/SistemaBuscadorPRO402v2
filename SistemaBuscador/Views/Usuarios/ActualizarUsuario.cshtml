@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model UsuarioEdicionModel
+<h3>Actualizar Datos</h3>
+<hr />
+<div class="card">
+    <div class="card-body">
+        <form action="ActualizarUsuario" method="post">
+            <input type="hidden"asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Username"></label>
+                <input asp-for="Username" class="form-control" type="text" readonly />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nombres"></label>
+                <input asp-for="Nombres" class="form-control" type="text" />
+                <span asp-validation-for="Nombres" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apellidos"></label>
+                <input asp-for="Apellidos" class="form-control" type="text" />
+                <span asp-validation-for="Apellidos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RolId"></label>
+                <select asp-for="RolId" class="form-control">
+                    <option value="">--Seleccione--</option>
+                    <option value="1">Administrador</option>
+                    <option value="2">Supervisor</option>
+                    <option value="3">Vendedor</option>
+                    <option value="4">Cajero</option>
+                </select>
+                <span asp-validation-for="RolId" class="text-danger"></span>
+            </div>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+            <button class="btn btn-primary" type="submit">Guardar</button>
+
+        </form>
+    </div>
+</div>

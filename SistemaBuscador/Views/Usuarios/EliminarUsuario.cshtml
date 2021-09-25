@@ -1,0 +1,19 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model UsuarioEdicionModel
+<h3>Eliminar Usuario</h3>
+<hr />
+<div class="card">
+    <div class="card-body">
+        <p>¿Está seguro de eliminar al usuario : <b>@Model.Username</b></p>
+        <form action="EliminarUsuario" method="post">
+            <input type="hidden" asp-for="Id" />
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+            <button class="btn btn-danger" type="submit">Eliminar</button>
+
+        </form>
+    </div>
+</div>

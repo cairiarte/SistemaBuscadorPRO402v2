@@ -16,9 +16,10 @@ namespace SistemaBuscador.Controllers
         {
             _repository = repository;
         }
-        public IActionResult Index() 
+        public async Task<IActionResult> Index() 
         {
-            return View();
+            var listaUsuario = await _repository.ObtenerListaUsuarios();
+            return View(listaUsuario);
         }
 
         public IActionResult NuevoUsuario() 
@@ -27,16 +28,50 @@ namespace SistemaBuscador.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult NuevoUsuario(UsuarioCreacionModel model)
+        public async Task<IActionResult> NuevoUsuario(UsuarioCreacionModel model)
         {
             if (ModelState.IsValid) 
             {
                 //Guardar el usuario en la BD
-                _repository.InsertarUsuario(model);
-
-                return View("Index");
+                await _repository.InsertarUsuario(model);
+               
+                return RedirectToAction("Index");
             }
             return View(model);
+        }
+        public async Task<IActionResult> ActualizarUsuario([FromRoute] int Id) 
+        {
+            var usuario = await _repository.ObtenerUsuarioPorID(Id);
+
+            return View(usuario);
+        }
+
+        public IActionResult CambiarPassword( int Id) 
+        {
+            ViewBag.IdUsuario = Id;
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CambiarPassword(UsuarioCambioPasswordModel model)
+        {
+            await _repository.ActualizarPassword(model);
+
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> EliminarUsuario(int id)
+        {
+            var usuario = await _repository.ObtenerUsuarioPorID(id);
+
+            return View(usuario);
+        }
+        [HttpPost]
+        public async Task<IActionResult> EliminarUsuario(UsuarioEdicionModel model)
+        {
+            await _repository.EliminarUsuario(model.Id);
+
+            return RedirectToAction("Index");
         }
     }
 }

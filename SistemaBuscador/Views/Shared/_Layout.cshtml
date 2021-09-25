@@ -20,10 +20,14 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Index">Mantenedor</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Index">Mantenedor Usuarios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Roles" asp-action="Index">Mantenedor Roles</a>
                         </li>
                         <li class="nav-item ml-auto">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Salir <i class="bi bi-box-arrow-right"></i></a>
+
                         </li>
                     </ul>
                 </div>
@@ -45,5 +49,10 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 </body>
 </html>

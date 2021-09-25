@@ -8,6 +8,11 @@ namespace SistemaBuscador.Repositories
 {
     public interface IUsuarioRepository
     {
+        Task ActualizarPassword(UsuarioCambioPasswordModel model);
+        Task ActualizarUsuario(UsuarioEdicionModel model);
+        Task EliminarUsuario(int id);
         Task InsertarUsuario(UsuarioCreacionModel model);
+        Task<List<UsuarioListaModel>> ObtenerListaUsuarios();
+        Task<UsuarioEdicionModel> ObtenerUsuarioPorID(int Id);
     }
 }
