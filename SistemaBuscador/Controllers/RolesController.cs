@@ -40,11 +40,37 @@ namespace SistemaBuscador.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> ActualizarRol([FromRoute] int Id)
+        public async Task<IActionResult> ActualizarRol(int Id)
         {
             var rol = await _repository.ObtenerRolPorID(Id);
 
             return View(rol);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ActualizarRol(RolEdicionModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                //Actualizar el usuario en la BD
+                await _repository.ActualizarRol(model);
+
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+        public async Task<IActionResult> EliminarRol(int id)
+        {
+            var rol = await _repository.ObtenerRolPorID(id);
+
+            return View(rol);
+        }
+        [HttpPost]
+        public async Task<IActionResult> EliminarRol(RolEdicionModel model)
+        {
+            await _repository.EliminarRol(model.Id);
+
+            return RedirectToAction("Index");
         }
     }
 }

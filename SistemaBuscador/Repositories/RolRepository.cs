@@ -45,12 +45,10 @@ namespace SistemaBuscador.Repositories
 
             return respuesta;
         }
-        public async Task<RolListaModel> ObtenerRolPorID(int Id)
+        public async Task<RolEdicionModel> ObtenerRolPorID(int Id)
         {
-            var respuesta = new RolListaModel()
-            {
+            var respuesta = new RolEdicionModel() { };
 
-            };
             var roldb = await _context.Roles.FirstOrDefaultAsync(x => x.Id == Id); //Linq
             if (roldb != null)
             {
@@ -61,14 +59,19 @@ namespace SistemaBuscador.Repositories
         }
 
 
-        public async Task ActualizarRol(RolListaModel model)
+        public async Task ActualizarRol(RolEdicionModel model)
         {
             var roldb = await _context.Roles.FirstOrDefaultAsync(x => x.Id == model.Id);
             roldb.Nombre = model.Nombre;
             await _context.SaveChangesAsync();
 
         }
-
+        public async Task EliminarRol(int Id)
+        {
+            var rol = await _context.Roles.FirstOrDefaultAsync(x => x.Id == Id);
+            _context.Roles.Remove(rol);
+            await _context.SaveChangesAsync();
+        }
 
     }
 }

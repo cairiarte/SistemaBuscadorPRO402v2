@@ -8,8 +8,10 @@ namespace SistemaBuscador.Repositories
 {
     public interface IRolRepository
     {
+        Task ActualizarRol(RolEdicionModel model);
+        Task EliminarRol(int Id);
         Task InsertarRol(RolCreacionModel model);
         Task<List<RolListaModel>> ObtenerListaRoles();
-        Task<RolListaModel> ObtenerRolPorID(int Id);
+        Task<RolEdicionModel> ObtenerRolPorID(int Id);
     }
 }
