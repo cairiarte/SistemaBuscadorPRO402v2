@@ -22,10 +22,10 @@ namespace SistemaBuscador.Controllers
             return View(listaUsuario);
         }
 
-        public IActionResult NuevoUsuario() 
+        public async Task<IActionResult> NuevoUsuario() 
         {
-
-            return View();
+            var model = await _repository.NuevoUsuarioCreacion();
+            return View(model);
         }
         [HttpPost]
         public async Task<IActionResult> NuevoUsuario(UsuarioCreacionModel model)
@@ -35,9 +35,9 @@ namespace SistemaBuscador.Controllers
                 //Guardar el usuario en la BD
                 await _repository.InsertarUsuario(model);
                
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Usuarios");
             }
-            return View(model);
+            return View("NuevoUsuario", model);
         }
         public async Task<IActionResult> ActualizarUsuario([FromRoute] int Id) 
         {

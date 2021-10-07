@@ -35,9 +35,9 @@ namespace SistemaBuscador.Controllers
                 //Guardar el usuario en la BD
                 await _repository.InsertarRol(model);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Roles");
             }
-            return View(model);
+            return View("NuevoRol",model);
         }
 
         public async Task<IActionResult> ActualizarRol(int Id)
