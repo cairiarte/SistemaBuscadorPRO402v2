@@ -15,6 +15,28 @@ namespace SistemaBuscador.Test.PruebasUnitarias.Servicios
     public class RolRepositorioTest :TestBase
     {
         [TestMethod]
+        public async Task ObtenerListaRoles()
+        {
+            //Preparacion
+            var nombreDB = Guid.NewGuid().ToString();
+            var context = BuildContext(nombreDB);
+            var RolService = new RolRepository(context);
+
+            context.Roles.Add(new Rol() { Nombre = "Administrador" });
+            context.Roles.Add(new Rol() { Nombre = "Supervisor" });
+            await context.SaveChangesAsync();
+
+            //Ejecucion
+            var context2 = BuildContext(nombreDB);
+            var lista = await context2.Roles.ToListAsync();
+            var resultado = lista.Count();
+
+            //Validacion
+            Assert.AreEqual(2, resultado);
+
+        }
+
+        [TestMethod]
         public async Task InsertarRol() 
         {
             //Preparacion

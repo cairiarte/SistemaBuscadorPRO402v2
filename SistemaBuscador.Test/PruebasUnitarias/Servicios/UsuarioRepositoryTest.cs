@@ -25,9 +25,11 @@ namespace SistemaBuscador.Test.PruebasUnitarias.Servicios
             var nombreDB = Guid.NewGuid().ToString();
             var context = BuildContext(nombreDB);
             var ServiceSeguridad = new Mock<ISeguridad>();
+            ServiceSeguridad.Setup(x => x.Encriptar(It.IsAny<String>())).Returns("AABBCCDDEEFFGGHH");
+
             var ServiceRol = new Mock<IRolRepository>();
             var repo = new UsuarioRepository(context,ServiceSeguridad.Object,ServiceRol.Object);
-            var model = new UsuarioCreacionModel() { Username = "UsuarioTest", Nombres = "NombreTest", Apellidos = "ApellidoTest", Password = ServiceSeguridad.Object.Encriptar("PasswordTest"), RolId = 1 };
+            var model = new UsuarioCreacionModel() { Username = "UsuarioTest", Nombres = "NombreTest", Apellidos = "ApellidoTest", Password = "PasswordTest", RolId = 1 };
 
             //Ejecucion
             await repo.InsertarUsuario(model);

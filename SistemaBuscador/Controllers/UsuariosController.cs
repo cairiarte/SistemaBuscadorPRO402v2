@@ -45,6 +45,17 @@ namespace SistemaBuscador.Controllers
 
             return View(usuario);
         }
+        [HttpPost]
+        public async Task<IActionResult> ActualizarUsuario(UsuarioEdicionModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                //guardar usuario en bd
+                await _repository.ActualizarUsuario(model);
+                return RedirectToAction("Index", "Usuarios");
+            }
+            return View("ActualizarUsuario", model);
+        }
 
         public IActionResult CambiarPassword( int Id) 
         {

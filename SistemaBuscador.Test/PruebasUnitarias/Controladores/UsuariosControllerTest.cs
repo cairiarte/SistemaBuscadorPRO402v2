@@ -2,8 +2,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using SistemaBuscador.Controllers;
+using SistemaBuscador.Entities;
 using SistemaBuscador.Models;
 using SistemaBuscador.Repositories;
+using SistemaBuscador.Utility;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,8 +14,10 @@ using System.Threading.Tasks;
 namespace SistemaBuscador.Test.PruebasUnitarias.Controladores
 {
     [TestClass]
-    public class UsuariosControllerTest
+    public class UsuariosControllerTest : TestBase
     {
+  
+
         [TestMethod]
         public async Task NuevoUsuario_Modelo_Invalido() 
         {
